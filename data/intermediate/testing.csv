@@ -1,0 +1,4 @@
+,rating,text,header,upvotes,preprocessed_header,preprocessed_text,final_text,aspects
+0,3,This is a very good mobile phone. Camera quality is also awesome,Good mobile,4,Good mobile,This good mobile phone Camera quality also awesome,Good mobile This good mobile phone Camera quality also awesome,"['mobile', 'phone', 'quality']"
+1,1,Performance is not good,Bad,5,Bad,Performance good,Bad Performance good,['Performance']
+2,5,Awesome mobile,Good mobile,4,Good mobile,Awesome mobile,Good mobile Awesome mobile,"['mobile', 'mobile']"

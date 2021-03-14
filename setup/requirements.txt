@@ -1,0 +1,8 @@
+pandas
+wordcloud
+stop_words
+spacy
+vaderSentiment
+textblob
+seaborn
+aspect_based_sentiment_analysis
