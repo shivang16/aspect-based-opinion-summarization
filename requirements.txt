@@ -4,4 +4,3 @@ stop_words
 spacy
 vaderSentiment
 textblob
-aspect_based_sentiment_analysis
