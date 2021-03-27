@@ -1,0 +1,3 @@
+,text,header,rating,upvotes,preprocessed_header,preprocessed_text,final_text,aspects
+0,This mobile is very good,Good mobile,4,10,Good mobile,This mobile good,Good mobile This mobile good,"['mobile', 'good']"
+1,Camera quality is not that great. Heating issues are also there in this phone,Not so good phone,2,4,Not good phone,Camera quality great Heating issue also phone,Not good phone Camera quality great Heating issue also phone,"['phone', 'quality', 'Heating', 'issue', 'phone']"
