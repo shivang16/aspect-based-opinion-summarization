@@ -18,4 +18,4 @@ def final_aspects(data,top_N):
     word_list
     word_dist = nltk.FreqDist(word_list)
     topN_words = pd.DataFrame(word_dist.most_common(top_N),columns=['Word', 'Frequency'])
-    return topN_words;
+    return topN_words

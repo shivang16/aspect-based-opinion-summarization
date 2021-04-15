@@ -71,7 +71,7 @@ def data_preprocess(data):
     data['text'].fillna("There is a book on the desk.", inplace=True)
     data['header'].fillna("There is a book on the desk.", inplace=True)
 
-    data['upvotes'].fillna('0', inplace=True)
+    data['upvotes'].fillna('1', inplace=True)
     data['rating'].fillna('3', inplace=True)
 
     data["upvotes"] = data["upvotes"].apply(

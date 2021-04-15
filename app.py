@@ -13,6 +13,7 @@ def greetings():
 def generate_aspects():
     content = request.json
     aspects = get_aspects.find_aspects(content)
+    # print(aspects)
     return aspects['Word'].to_json()
 
 
@@ -22,6 +23,7 @@ def generate_summary():
     scores = get_summary.make_summary(content)
     return scores
     # return scores.to_json()
+
 
 
 if __name__ == '__main__':
