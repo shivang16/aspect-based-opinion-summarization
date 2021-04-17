@@ -98,7 +98,7 @@ def make_summary(content):
     plt.figure()
     plt.pie(PieChartvalues, labels=PieChartlabels)
     plt.title("Aspects Distribution")
-    plt.savefig('./data/intermediate/'+'pie-chart-'+content['file_name'])
+    plt.savefig('./front-end/src/assets/'+'pie-chart-'+content['file_name'])
 
     # Rating v/s Aspect graph
     l = []
@@ -112,7 +112,7 @@ def make_summary(content):
     plt.xlabel("Aspects")
     plt.ylabel("Rating")
     plt.title("Aspects vs Out of 5 Rating")
-    plt.savefig('./data/intermediate/'+'bar-graph-'+content['file_name'])
+    plt.savefig('./front-end/src/assets/'+'bar-graph-'+content['file_name'])
 
     final_rating = Average(barY)
     return {"ratings":ratings,"summary":summary,"final_rating":final_rating}
