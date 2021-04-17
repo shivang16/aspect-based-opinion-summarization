@@ -89,9 +89,9 @@ const Attributes = () => {
       file_name: "temp",
     }).then(res => {
       console.log(res);
+      setLoading(false);
       resultContext.setResult(res.data);
       history.push('/result');
-      setLoading(false);
     }).catch(err => {
       console.log(err);
       setLoading(false);
