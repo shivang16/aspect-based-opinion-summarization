@@ -16,10 +16,10 @@ def aspect_sentiment(selected_aspects,data,column,n):
     sum = 0
     for index, row in data.head(n).iterrows():
         aspects_output = absaNLP(row[column],aspects=selected_aspects)
-        sum+=pow(row['upvotes'],0.5)  
+        sum+=pow(row['upvotes'],0.2)  
         for i in range(len(selected_aspects)):  
             temp1 = aspects_output.subtasks[selected_aspects[i]].examples[0].scores
-            x = [k*pow(row['upvotes'],0.5) for k in temp1]
+            x = [k*pow(row['upvotes'],0.2) for k in temp1]
             aspects_score[selected_aspects[i]] = list(map(add, aspects_score[selected_aspects[i]], x))
     for i in range(len(selected_aspects)):    
         temp = aspects_score[selected_aspects[i]]

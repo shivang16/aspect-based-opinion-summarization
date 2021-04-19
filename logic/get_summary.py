@@ -37,41 +37,51 @@ def make_summary(content):
     
     newData['aspects'] = temp_aspects
     newData['upvotes'] = data['upvotes']
+    newData['rating'] = data['rating']
+    total_upvotes = newData['upvotes'].sum()
     polarities = []
     for index, row in newData.iterrows():
         x = sentiment_analysis.getPolarity(row['original'],row['aspects'])    
         polarities.append(x)    
         for j in row['aspects']:
             aspect_count[j]=aspect_count[j]+1
-    # print(newData)
     # print(aspect_count)
-    
+    # print(total_upvotes)
     newData['polarity'] = polarities
     newData.sort_values("upvotes",axis=0,inplace=True,ascending=False)
-    aspect_header_score = sentiment_analysis.aspect_sentiment(selected_aspects,data,'preprocessed_header',data.shape[0])
-    aspect_text_score = sentiment_analysis.aspect_sentiment(selected_aspects,data,'preprocessed_text',data.shape[0])
-    final_score = {}
+    # print(newData)
+    aspect_rating = {}
+    aspect_upvotes = {}
+    rating_sum = {}
     for i in selected_aspects:
-        final_score[i] = [0,0,0]
-    # print(aspect_header_score)
-    # print(aspect_text_score)
+        aspect_rating[i] = 0
+        aspect_upvotes[i] = 0
+        rating_sum[i] = 0
+
+    for index, row in newData.iterrows():
+        for a,p in row['polarity'].items():
+            if str(p) =='Sentiment.negative':
+                aspect_rating[a] -=row['upvotes']
+            elif str(p) =='Sentiment.positive':
+                aspect_rating[a] +=row['upvotes']
+            aspect_upvotes[a]+=row['upvotes']
+            rating_sum[a]+=row['rating']
+    # print(rating_sum)
+    rating_average = rating_sum
     for i in selected_aspects:
-        for j in range(len(aspect_header_score[i])):
-            final_score[i][j] = (3*aspect_header_score[i][j]+2*aspect_text_score[i][j])
-    ratings = {}
+        rating_average[i] = rating_sum[i]/aspect_count[i]
+    # print(rating_average)
     for i in selected_aspects:
-        ratings[i] = 0
-    rating_avg = data['rating'].mean()
+        aspect_rating[i]/=aspect_upvotes[i]
+        aspect_rating[i]+=1
+        aspect_rating[i]*=2
+        aspect_rating[i]+=1
+    ratings = aspect_rating
+    # print(ratings)
     for i in selected_aspects:
-        if final_score[i][0]+5-abs(final_score[i][1]-final_score[i][2])>=3.5:
-            ratings[i] = 3
-        elif final_score[i][1]>=final_score[i][2]:
-            ratings[i] = 5-final_score[i][1]
-        else:
-            ratings[i] = final_score[i][2]
-        ratings[i] = pow(ratings[i]*rating_avg,.5)
+        ratings[i] = pow(ratings[i]*rating_average[i],0.5)
+    # print(ratings)
     rating = {}
-    
     for i in selected_aspects:
         if ratings[i]>=3:
             rating[i] = "Sentiment.positive"

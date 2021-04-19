@@ -15,7 +15,7 @@ def find_aspects(content):
     data["final_text"] = data["preprocessed_header"] + ' '+data["preprocessed_text"]
 
     data['aspects'] = data['final_text'].apply(lambda x:aspect_extractor.extract_aspects(x))
-    aspect_list = aspect_extractor.final_aspects(data,20)
+    aspect_list = aspect_extractor.final_aspects(data,10)
     data.to_csv('./data/intermediate/'+content['file_name']+'.csv')
     return aspect_list
     
